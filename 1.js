@@ -22,10 +22,8 @@ function autoSetCanvasSize(canvas){
 }
 
   function setCanvasSize(){
-   var pageWidth = 
-document.documentElement.clientWidth
-   var pageHeight = 
-document.documentElement.clientHeight 
+   var pageWidth = document.documentElement.clientWidth
+   var pageHeight = document.documentElement.clientHeight 
 
    canvas.width = pageWidth
    canvas.height = pageHeight
@@ -41,9 +39,9 @@ function drawCircle(x,y,radius){
 function drawLine(x1,y1,x2,y2){
   context.beginPath();
   context.strokeStyle = 'black'
-  context.moveTo(x1-5,y1-5)   // 起点
+  context.moveTo(x1,y1)   // 起点
   context.lineWidth = 5
-  context.lineTo(x2-5,y2-5)    // 终点
+  context.lineTo(x2,y2)    // 终点
   context.stroke()
   context.closePath()
 }
@@ -58,7 +56,7 @@ function listenToMouse(canvas){
      var y = aaa.clientY
      using = true
      if(eraserEnabled){
-       context.clearRect(x,y,10,10)
+       context.clearRect(x-5,y-5,10,10)
      }else{
     lastPoint = {"x": x,"y": y}
   } 
