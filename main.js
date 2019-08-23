@@ -103,11 +103,11 @@ function listenToUser(canvas) {
       lastPoint = newPoint
     }
   }
-  canvas.ontouchhend = function () {
+  canvas.ontouchhend = function (aaa) {
     console.log('摸完了')
     using = false
   }
-}
+} else {
   // 非触屏设备
   canvas.onmousedown = function (aaa) {
     var x = aaa.clientX
@@ -137,3 +137,8 @@ function listenToUser(canvas) {
   canvas.onmouseup = function (aaa) {
     using = false
   }
+}
+
+
+
+
