@@ -73,7 +73,7 @@ function listenToUser(canvas) {
   var using = false
   var lastpoint = { x: undefined, y: undefined }
   //特性检测
-  if (document.body.ontouchstart !== undefined)
+  if (document.body.ontouchstart !== undefined){
     // 触屏设备
     canvas.ontouchstart = function (aaa) {
       console.log('开始摸我了')
