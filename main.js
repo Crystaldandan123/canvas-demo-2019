@@ -1,5 +1,7 @@
 var yyy = document.getElementById('xxx');
 var context = yyy.getContext('2d');
+var lineWidth = 3;
+
 autoSetCanvasSize(yyy)
 
 listenToUser(yyy)
@@ -15,6 +17,26 @@ eraser.onclick = function () {
   eraser.classList.add('active')
   pen.classList.remove('active')
 }
+thin.onclick = function(){
+  lineWidth = 3
+}
+thick.onclick = function(){
+  lineWidth = 8
+}
+clear.onclick = function(){
+  context.clearRect(0, 0, yyy.width,yyy.height);
+}
+download.onclick = function(){
+  var url = yyy.toDataURL("image/png")
+  console.log(url)
+  var a = document.createElement('a')
+  document.body.appendChild(a)
+  a.href = url
+  a.download = '我的画'
+  a.target = '_blank'
+  a.click()
+}
+
 red.onclick = function () {
   context.fillStyle = 'red'
   context.strokeStyle = 'red'
@@ -36,6 +58,7 @@ blue.onclick = function () {
   green.classList.remove('active')
   red.classList.remove('active')
 }
+
 /******/
 function autoSetCanvasSize(canvas) {
   setCanvasSize()
@@ -61,7 +84,7 @@ function drawCircle(x, y, radius) {
 function drawLine(x1, y1, x2, y2) {
   context.beginPath();
   context.moveTo(x1, y1)   // 起点
-  context.lineWidth = 5
+  context.lineWidth = lineWidth
   context.lineTo(x2, y2)    // 终点
   context.stroke()
   context.closePath()
@@ -77,8 +100,8 @@ function listenToUser(canvas) {
     // 触屏设备
     canvas.ontouchstart = function (aaa) {
       console.log('开始摸我了')
-      var x = aaa.touchs[0].clientX
-      var y = aaa.touchs[0].clientY
+      var x = aaa.touches[0].clientX
+      var y = aaa.touches[0].clientY
       console.log(x, y)
       using = true
       if (eraserEnabled) {
@@ -89,8 +112,8 @@ function listenToUser(canvas) {
     }
   canvas.ontouchmove = function (aaa) {
     console.log('边摸边动')
-    var x = aaa.touchs[0].clientX
-    var y = aaa.touchs[0].clientY
+    var x = aaa.touches[0].clientX
+    var y = aaa.touches[0].clientY
     if (!using) { return }
     if (eraserEnabled) {
       context.clearRect(x - 5, y - 5, 10, 10)
@@ -139,6 +162,7 @@ function listenToUser(canvas) {
   }
 }
 }
+
 
 
 
